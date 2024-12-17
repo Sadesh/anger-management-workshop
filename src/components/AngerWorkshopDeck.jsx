@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Brain, GamepadIcon, Users, Target, AlertTriangle } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { ChevronLeft, ChevronRight, AlertCircle, Users, Target, Brain, GamepadIcon } from 'lucide-react';
 
 const AngerWorkshopDeck = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // First Thoughts - Split into two slides
-  const thoughts = [
+  const morningThoughts = [
     { day: 1, thought: "My thoughts went to check what happened to the UIPath Share Results has it gone up or down." },
     { day: 2, thought: "My thoughts went to check arranged cricket umpire went on time at morning 7am." },
     { day: 3, thought: "My thoughts went to see did i slept for long time. Sunday is the day i wont wake up through alarm." },
@@ -40,7 +38,7 @@ const AngerWorkshopDeck = () => {
     "I will come back later to it"
   ];
 
-  const strategies = [
+  const managementStrategies = [
     {
       title: "Redirect Energy",
       description: "Transform anger into productive energy, focusing intensely on tasks at hand",
@@ -68,83 +66,87 @@ const AngerWorkshopDeck = () => {
   ];
 
   const slides = [
-    // Slide 1: First Thoughts (Days 1-6)
-    <div className="grid gap-4">
-      <h2 className="text-3xl font-bold text-center mb-4">Morning First Thoughts</h2>
-      <p className="text-xl text-center text-gray-600 mb-4">Days 1-6</p>
-      {thoughts.slice(0, 6).map((item) => (
-        <div key={item.day} className="bg-blue-50 p-4 rounded-lg">
-          <div className="flex items-start gap-4">
-            <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 text-lg">
-              {item.day}
-            </div>
-            <p className="text-lg text-gray-700">{item.thought}</p>
-          </div>
-        </div>
-      ))}
-    </div>,
-
-    // Slide 2: First Thoughts (Days 7-12)
-    <div className="grid gap-4">
-      <h2 className="text-3xl font-bold text-center mb-4">Morning First Thoughts</h2>
-      <p className="text-xl text-center text-gray-600 mb-4">Days 7-12</p>
-      {thoughts.slice(6, 12).map((item) => (
-        <div key={item.day} className="bg-blue-50 p-4 rounded-lg">
-          <div className="flex items-start gap-4">
-            <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 text-lg">
-              {item.day}
-            </div>
-            <p className="text-lg text-gray-700">{item.thought}</p>
-          </div>
-        </div>
-      ))}
-    </div>,
-
-    // Slide 3: Self Triggers
-    <div>
-      <div className="flex items-center justify-center gap-3 mb-6">
-        <AlertTriangle className="w-8 h-8 text-orange-500" />
-        <h2 className="text-3xl font-bold">Words That Trigger Me</h2>
-      </div>
-      <div className="grid gap-4">
-        {selfTriggers.map((trigger, index) => (
-          <div key={index} className="bg-orange-50 border-l-4 border-orange-500 p-4 rounded-lg">
-            <div className="flex items-center gap-4">
-              <div className="bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 text-lg">
-                {index + 1}
+    // Morning Thoughts Part 1
+    <div key="thoughts1" className="space-y-4">
+      <h2 className="text-3xl font-bold text-center">Morning First Thoughts</h2>
+      <p className="text-xl text-center text-gray-600">Days 1-6</p>
+      <div className="space-y-4">
+        {morningThoughts.slice(0, 6).map((item) => (
+          <div key={item.day} className="bg-blue-50 p-4 rounded-lg">
+            <div className="flex items-start gap-4">
+              <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
+                {item.day}
               </div>
-              <p className="text-lg text-gray-700">{trigger}</p>
+              <p className="text-gray-700">{item.thought}</p>
             </div>
           </div>
         ))}
       </div>
     </div>,
 
-    // Slide 4: Others' Triggers
-    <div>
+    // Morning Thoughts Part 2
+    <div key="thoughts2" className="space-y-4">
+      <h2 className="text-3xl font-bold text-center">Morning First Thoughts</h2>
+      <p className="text-xl text-center text-gray-600">Days 7-12</p>
+      <div className="space-y-4">
+        {morningThoughts.slice(6, 12).map((item) => (
+          <div key={item.day} className="bg-blue-50 p-4 rounded-lg">
+            <div className="flex items-start gap-4">
+              <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
+                {item.day}
+              </div>
+              <p className="text-gray-700">{item.thought}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>,
+
+    // Self Triggers
+    <div key="selfTriggers" className="space-y-4">
+      <div className="flex items-center justify-center gap-3 mb-6">
+        <AlertCircle className="w-8 h-8 text-orange-500" />
+        <h2 className="text-3xl font-bold">Words That Trigger Me</h2>
+      </div>
+      <div className="space-y-4">
+        {selfTriggers.map((trigger, index) => (
+          <div key={index} className="bg-orange-50 border-l-4 border-orange-500 p-4 rounded-lg">
+            <div className="flex items-center gap-4">
+              <div className="bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
+                {index + 1}
+              </div>
+              <p className="text-gray-700">{trigger}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>,
+
+    // Others' Triggers
+    <div key="othersTriggers" className="space-y-4">
       <div className="flex items-center justify-center gap-3 mb-6">
         <Users className="w-8 h-8 text-purple-500" />
         <h2 className="text-3xl font-bold">Words That Trigger Others</h2>
       </div>
-      <div className="grid gap-4">
+      <div className="space-y-4">
         {othersTriggers.map((trigger, index) => (
           <div key={index} className="bg-purple-50 border-l-4 border-purple-500 p-4 rounded-lg">
             <div className="flex items-center gap-4">
-              <div className="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 text-lg">
+              <div className="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
                 {index + 1}
               </div>
-              <p className="text-lg text-gray-700">{trigger}</p>
+              <p className="text-gray-700">{trigger}</p>
             </div>
           </div>
         ))}
       </div>
     </div>,
 
-    // Slide 5: Management Strategies
-    <div>
+    // Management Strategies
+    <div key="strategies" className="space-y-4">
       <h2 className="text-3xl font-bold text-center mb-6">Anger Management Strategies</h2>
-      <div className="grid gap-4">
-        {strategies.map((strategy, index) => (
+      <div className="space-y-4">
+        {managementStrategies.map((strategy, index) => (
           <div key={index} className="bg-green-50 border-l-4 border-green-500 p-4 rounded-lg">
             <div className="flex items-start gap-4">
               <div className="bg-green-500 text-white rounded-lg p-2 flex-shrink-0">
@@ -164,8 +166,8 @@ const AngerWorkshopDeck = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6" style={{ fontFamily: 'Tahoma, sans-serif' }}>
-      <Card className="bg-white shadow-lg">
-        <CardContent className="p-8">
+      <div className="bg-white shadow-lg rounded-lg">
+        <div className="p-8">
           {slides[currentSlide]}
           
           <div className="flex justify-between items-center mt-8">
@@ -187,8 +189,8 @@ const AngerWorkshopDeck = () => {
               <ChevronRight className="w-6 h-6" />
             </button>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 };
